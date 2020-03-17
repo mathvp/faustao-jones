@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hangman</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-wrapper" class="wrapper flex-row flex-center">
+    <div id="game" class="">
+    </div>
+  </div>
+
+  <div id="hidden-screens">
+    <div id="title-screen" class="flex-col flex-center">
+      <h1>Hangman</h1>
+      <a href="#" class="btn btn-primary">Iniciar</a>
+    </div>
+
+    <div id="inside-game-screen">
+      Jogo
+    </div>
+  </div>
+
+  <button onclick="titleScreen.show(1000)">Show</button>
+  <button onclick="titleScreen.hide(1000)">Hide</button>
+
+  <script type="module">
+    import { TitleScreen } from './js/screens/titleScreen.js';
+
+    const gameConfig = {
+      id: 'game',
+      width: 480,
+      height: 600,
+    };
+    const gameInit = new Main(gameConfig);
+
+    const titleOptions = {
+      element: 'title-screen',
+      parentElement: 'game'
+    }
+
+    window.titleScreen = new TitleScreen(titleOptions);
+
+    titleScreen.show(1000)
+  </script>
+</body>
+</html>
