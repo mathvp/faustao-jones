@@ -19,27 +19,29 @@
   </div>
 
   <div id="hidden-screens">
-    <div id="title-screen" class="flex-col flex-center">
+    <div id="title-screen" class="screen flex-col flex-center">
       <h1>Hangman</h1>
-      <a href="#" class="btn btn-primary">Iniciar</a>
+      <a href="javascript:void(0)" class="btn btn-primary" onclick="gameScreen.startGame()">Iniciar</a>
     </div>
 
-    <div id="inside-game-screen">
+    <div id="inside-game-screen" class="screen">
       Jogo
+      <div id="letters-board">
+        <div class="letter">A</div>
+      </div>
     </div>
   </div>
 
-  <button onclick="titleScreen.show(1000)">Show</button>
-  <button onclick="titleScreen.hide(1000)">Hide</button>
-
   <script type="module">
     import { TitleScreen } from './js/screens/titleScreen.js';
+    import { GameScreen } from './js/screens/gameScreen.js';
 
     const gameConfig = {
       id: 'game',
       width: 480,
       height: 600,
     };
+
     const gameInit = new Main(gameConfig);
 
     const titleOptions = {
@@ -49,7 +51,9 @@
 
     window.titleScreen = new TitleScreen(titleOptions);
 
-    titleScreen.show(1000)
+    window.gameScreen = new GameScreen({ element: 'inside-game-screen', parentElement: 'game'});
+
+    titleScreen.show(1000);
   </script>
 </body>
 </html>
