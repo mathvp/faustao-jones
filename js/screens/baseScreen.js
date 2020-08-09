@@ -1,4 +1,4 @@
-import { fadeOut, fadeIn } from '../animations.js';
+import { fadeOut, fadeIn } from '../utils/animations.js';
 
 export class BaseScreen {
   constructor(options) {
@@ -20,21 +20,42 @@ export class BaseScreen {
     return document.getElementById('hidden-screens');
   }
 
-  show(fadeInTime) {
-    this.domElement.style.transition = `opacity ${fadeInTime}ms`;
+  clearScreen(fadeOutTime) {
+    return new Promise((resolve) => {
+      const activeScreen = document.getElementsByClassName('active-screen');
 
-    this.parent.appendChild(this.domElement).focus();
-    fadeIn(this.domElement);
+      if (!activeScreen.length)
+        resolve();
+
+      this.removeElement(activeScreen[0], fadeOutTime);
+
+      setTimeout(() => resolve(), fadeOutTime);
+    });
+  }
+
+  show(fadeInTime) {
+    this.clearScreen(fadeInTime / 2).then(() => {
+      this.domElement.style.transition = `opacity ${fadeInTime}ms`;
+
+      this.parent.appendChild(this.domElement).focus();
+      this.domElement.classList.add('active-screen');
+
+      fadeIn(this.domElement);
+    });
   }
 
   hide(fadeOutTime) {
+    removeElement(this.domElement, fadeOutTime);
+  }
+
+  removeElement(element, fadeOutTime) {
     const hiddenWrapper = this.getHiddenWrapper();
 
-    this.domElement.style.transition = `opacity ${fadeOutTime}ms`;
+    element.style.transition = `opacity ${fadeOutTime}ms`;
 
-    fadeOut(this.domElement, fadeOutTime).then(() => {
-      this.domElement.classList.add('hidden');
-      hiddenWrapper.appendChild(this.domElement);
+    fadeOut(element, fadeOutTime).then(() => {
+      element.classList.remove('active-screen');
+      hiddenWrapper.appendChild(element);
     });
   }
 }
