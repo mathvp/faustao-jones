@@ -88,3 +88,15 @@ a, a:visited, a:active {
 #inside-game-screen {
   background-color: #fff;
 }
+
+#letters-board {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+}
+
+#letters-board .letter {
+  padding: .3rem .5rem;
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+}
