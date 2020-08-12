@@ -21,13 +21,12 @@
   <div id="hidden-screens">
     <div id="title-screen" class="screen flex-col flex-center">
       <h1>Hangman</h1>
-      <a href="javascript:void(0)" class="btn btn-primary" onclick="gameScreen.startGame()">Iniciar</a>
+      <a href="javascript:void(0)" class="btn btn-primary" id="start-button">Iniciar</a>
     </div>
 
     <div id="inside-game-screen" class="screen">
-      Jogo
+      <div id="gameword"></div>
       <div id="letters-board">
-        <div class="letter">A</div>
       </div>
     </div>
   </div>
@@ -35,6 +34,7 @@
   <script type="module">
     import { TitleScreen } from './js/screens/titleScreen.js';
     import { GameScreen } from './js/screens/gameScreen.js';
+    import { LetterBoard } from './js/screens/letterBoard.js';
 
     const gameConfig = {
       id: 'game',
@@ -51,9 +51,19 @@
 
     window.titleScreen = new TitleScreen(titleOptions);
 
-    window.gameScreen = new GameScreen({ element: 'inside-game-screen', parentElement: 'game'});
-
     titleScreen.show(1000);
+
+    document.getElementById('start-button').addEventListener('click', startClicked);
+
+    function startClicked() {
+      window.gameScreen = new GameScreen({ element: 'inside-game-screen', parentElement: 'game'});
+      gameScreen.startGame();
+
+      const wordElement = document.getElementById('gameword');
+      wordElement.innerHTML = gameScreen.wordObj.word;
+
+      window.letterBoard = new LetterBoard({ element: 'letters-board' })
+    }
   </script>
 </body>
 </html>
