@@ -25,9 +25,21 @@
     </div>
 
     <div id="inside-game-screen" class="screen">
-      <div id="guess-container"></div>
+      <div id="bg-wrapper">
+        <div class="bg" id="top-bg">
+        </div>
+        <div class="bg" id="lava">
+        </div>
+        <div class="bg" id="bottom-bg">
+        </div>
+      </div>
+      <div id="character-wrapper">
+        <div id="chain"></div>
+        <img id="character" src="./img/sprites/indiana.png" />
+      </div>
+      <div class="game-hud" id="guess-container"></div>
       <div id="gameword"></div>
-      <div id="letters-board">
+      <div class="game-hud" id="letters-board">
       </div>
     </div>
 
@@ -50,7 +62,7 @@
     const gameConfig = {
       id: 'game',
       width: 480,
-      height: 600,
+      height: 640,
     };
 
     const gameInit = new Main(gameConfig);

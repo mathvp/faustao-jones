@@ -6,7 +6,7 @@
 
 body {
   overflow-x: hidden;
-  background: url(../img/concrete_seamless.webp);
+  background-color: #212527;
   font-family: 'Walter Turncoat', cursive;
 }
 
@@ -48,9 +48,7 @@ a, a:visited, a:active {
 }
 
 #game {
-  border: 12px solid #7b673f;
   max-height: 100vh;
-  background-color: #406a3e;
 }
 
 #game-wrapper {
@@ -64,8 +62,9 @@ a, a:visited, a:active {
 }
 
 .screen {
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
 }
 
 #title-screen {
@@ -87,6 +86,56 @@ a, a:visited, a:active {
 
 #inside-game-screen {
   background-color: #fff;
+  overflow: hidden;
+}
+
+#inside-game-screen #bg-wrapper, #inside-game-screen #character-wrapper {
+  z-index: 0;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+}
+
+#inside-game-screen #bg-wrapper .bg {
+  display: block;
+  width: 100%;
+}
+
+#inside-game-screen #bg-wrapper #top-bg {
+  background: url(../img/sprites/bg-top.png) no-repeat bottom left;
+  background-size: cover;
+  height: 462px;
+}
+
+#inside-game-screen #bg-wrapper #lava {
+  background: url(../img/sprites/lava.gif) no-repeat 0 0;
+  background-size: cover;
+  height: 22px;
+}
+
+#inside-game-screen #bg-wrapper #bottom-bg {
+  background: url(../img/sprites/bg-bottom.png) no-repeat bottom left;
+  background-size: cover;
+  height: 156px;
+}
+
+#character-wrapper {
+  text-align: center;
+}
+
+#character-wrapper #chain {
+  width: 8px;
+  height: 150px;
+  min-height: 39px;
+  background: url(../img/sprites/chain.png) repeat-y 0 0;
+  margin: 0 auto;
+}
+
+.game-hud {
+  z-index: 20;
+  position: relative;
+  color: #fff;
 }
 
 #letters-board {
