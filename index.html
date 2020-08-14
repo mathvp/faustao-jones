@@ -30,6 +30,16 @@
       <div id="letters-board">
       </div>
     </div>
+
+    <div id="game-over-screen" class="screen">
+      <h1>Game Over</h1>
+      <div><a href="javascript:void(0)" id="restart-button">Continuar</a></div>
+    </div>
+
+    <div id="win-screen" class="screen">
+      <h1>Você Ganhou</h1>
+      <div><a href="javascript:void(0)" id="won-button">Continuar</a></div>
+    </div>
   </div>
 
   <script type="module">
@@ -45,16 +55,18 @@
 
     const gameInit = new Main(gameConfig);
 
-    const titleOptions = {
-      element: 'title-screen',
-      parentElement: 'game'
+    function start() {
+      const titleOptions = {
+        element: 'title-screen',
+        parentElement: 'game'
+      }
+
+      window.titleScreen = new TitleScreen(titleOptions);
+      document.getElementById('start-button').addEventListener('click', startClicked);
+      titleScreen.show(1000);
     }
 
-    window.titleScreen = new TitleScreen(titleOptions);
-
-    titleScreen.show(1000);
-
-    document.getElementById('start-button').addEventListener('click', startClicked);
+    start();
 
     function startClicked() {
       window.gameScreen = new GameScreen({ element: 'inside-game-screen', parentElement: 'game'});
@@ -64,6 +76,13 @@
       wordElement.innerHTML = gameScreen.wordObj.word;
 
       window.letterBoard = new LetterBoard({ element: 'letters-board' })
+    }
+
+    document.getElementById('restart-button').addEventListener('click', restartClicked);
+    document.getElementById('won-button').addEventListener('click', restartClicked);
+
+    function restartClicked() {
+      window.location.reload();
     }
   </script>
 </body>

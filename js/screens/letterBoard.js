@@ -3,6 +3,7 @@ import letters from '../../data/letters.js';
 export class LetterBoard {
   constructor(options) {
     this.element = document.getElementById(options.element);
+    this.element.innerHTML = '';
     this.insertLetters();
   }
 

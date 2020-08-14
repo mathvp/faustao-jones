@@ -1,5 +1,7 @@
 import { BaseScreen } from './baseScreen.js';
 import words from '../../data/words.js';
+import { GameOverScreen } from './gameOverScreen.js';
+import { WinScreen } from './winScreen.js';
 
 export class GameScreen extends BaseScreen {
   constructor(options) {
@@ -8,6 +10,7 @@ export class GameScreen extends BaseScreen {
     this.guessWord = [];
     this.currentErrors = 0;
     this.maxErrors = null;
+    this.hits = 0;
   }
 
   setupGame() {
@@ -52,6 +55,12 @@ export class GameScreen extends BaseScreen {
       this.guessWord[letterIndex] = letter;
       this.printGuessWord();
       this.compareLetterWord(letter, letterIndex + 1, hits + 1);
+      this.hits += 1;
+
+      if (this.win()) {
+        this.winScreen();
+      }
+
     } else if (hits == 0){
       this.currentErrors += 1;
       if (this.lose()) {
@@ -65,8 +74,18 @@ export class GameScreen extends BaseScreen {
     return (this.maxErrors - this.currentErrors) == 0;
   }
 
+  win() {
+    return (this.hits == this.wordObj.length);
+  }
+
   gameOver() {
-    alert('Perdeu');
+    const gameOverScreen = new GameOverScreen({ element: 'game-over-screen', parentElement: 'game'});
+    gameOverScreen.show(1000);
+  }
+
+  winScreen() {
+    const winScreen = new WinScreen({ element: 'win-screen', parentElement: 'game'});
+    winScreen.show(1000);
   }
 
 }
