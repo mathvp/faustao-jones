@@ -109,14 +109,15 @@ a, a:visited, a:active {
 }
 
 #inside-game-screen #bg-wrapper #lava {
-  background: url(../img/sprites/lava.gif) no-repeat 0 0;
-  background-size: cover;
+  background: url(../img/sprites/lava-sprite.png) no-repeat;
+  background-position-y: 0;
+  background-position-x: center;
   height: 22px;
+  animation: lava .8s steps(3) infinite;
 }
 
 #inside-game-screen #bg-wrapper #bottom-bg {
-  background: url(../img/sprites/bg-bottom.png) no-repeat bottom left;
-  background-size: cover;
+  background: url(../img/sprites/bg-bottom.png) no-repeat bottom center;
   height: 156px;
 }
 
@@ -126,10 +127,19 @@ a, a:visited, a:active {
 
 #character-wrapper #chain {
   width: 8px;
-  height: 150px;
-  min-height: 39px;
+  height: 500px;
   background: url(../img/sprites/chain.png) repeat-y 0 0;
   margin: 0 auto;
+  margin-top: -330px;
+  transition: all .5s;
+  transform-origin: top center;
+  animation: shake 4s infinite alternate;
+}
+
+#character-wrapper #character {
+  margin-top: -8px;
+  transform-origin: top center;
+  animation: moveCharacter 4s infinite alternate;
 }
 
 .game-hud {
@@ -148,4 +158,32 @@ a, a:visited, a:active {
   align-self: center;
   justify-self: center;
   cursor: pointer;
+}
+
+/* Animations */
+
+@keyframes lava {
+  100% {
+    background-position-y: -66px;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-1deg)
+  }
+  100% {
+    transform: rotate(1deg)
+  }
+}
+
+@keyframes moveCharacter {
+  0% {
+    margin-left: 18px;
+    transform: rotate(-1deg)
+  }
+  100% {
+    margin-left: -18px;
+    transform: rotate(1deg)
+  }
 }

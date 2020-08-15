@@ -62,12 +62,25 @@ export class GameScreen extends BaseScreen {
       }
 
     } else if (hits == 0){
-      this.currentErrors += 1;
-      if (this.lose()) {
-        this.gameOver();
-      }
-
+      this.wrong();
     }
+  }
+
+  wrong() {
+    this.currentErrors += 1;
+
+    this.downChain();
+
+    if (this.lose()) {
+      this.gameOver();
+    }
+  }
+
+  downChain() {
+    const chain = document.getElementById('chain');
+
+    const style = window.getComputedStyle(chain);
+    chain.style.marginTop = parseInt(style.marginTop) + 30 + "px";
   }
 
   lose() {
