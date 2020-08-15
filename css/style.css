@@ -140,9 +140,23 @@ a, a:visited, a:active {
   color: #fff;
 }
 
+#guess-container {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  margin-top: 10%;
+  background-color: rgba(237, 28, 36, .4);
+  padding: 5px 0;
+}
+
 #letters-board {
   display: grid;
   grid-template-columns: repeat(9, auto);
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+  transition: all 1s;
 }
 
 #letters-board .letter {
@@ -150,6 +164,12 @@ a, a:visited, a:active {
   align-self: center;
   justify-self: center;
   cursor: pointer;
+  transition: all .5s;
+}
+
+#letters-board .letter.clicked {
+  color: #ffd400;
+  opacity: .3;
 }
 
 /* Animations */

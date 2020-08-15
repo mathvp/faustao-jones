@@ -94,14 +94,20 @@ export class GameScreen extends BaseScreen {
   gameOver() {
     this.downChain(220);
     const gameOverScreen = new GameOverScreen({ element: 'game-over-screen', parentElement: 'game'});
+
+    const board = document.getElementById('letters-board');
+    board.style.opacity = '0';
+
     setTimeout(() => {
       gameOverScreen.show(1000);
-    }, 2000);
+    }, 1500);
   }
 
   winScreen() {
     const winScreen = new WinScreen({ element: 'win-screen', parentElement: 'game'});
-    winScreen.show(1000);
+    setTimeout(() => {
+      winScreen.show(1000);
+    }, 1500);
   }
 
 }
