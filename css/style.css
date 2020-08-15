@@ -67,20 +67,41 @@ a, a:visited, a:active {
 }
 
 #title-screen {
-  background-image: linear-gradient(
-    to bottom,
-    rgba(20, 74, 11, 0.5),
-    rgba(8, 68, 47, 0.5)),
-    url(../img/chalkboard-texture.jpg);
-  background-position: center;
+  background: url(../img/title-screen-bg.png) #000 no-repeat center center;
+  background-size: cover;
   color: #fff;
 }
 
-#title-screen h1 {
-  width: 100%;
+#title-screen #game-logo {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .5s;
+  animation: slideDown .8s ease;
+  opacity: 1;
+}
+
+#title-screen #game-subtitle {
+  position: absolute;
+  top: 65%;
+  left: 59%;
+  transform: translate(-50%, -50%);
+  transition: all .5s;
+  animation: slideRight .5s ease;  
+}
+#title-screen #start-button {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
   text-align: center;
-  font-family: 'Rock Salt', cursive;
-  margin-bottom: 2rem;
+}
+
+#title-screen #start-button img {
+  transition: all .5s;
+  animation: zoom .5s ease-in; 
 }
 
 #inside-game-screen {
@@ -168,11 +189,39 @@ a, a:visited, a:active {
 }
 
 #letters-board .letter.clicked {
-  color: #ffd400;
   opacity: .3;
 }
 
 /* Animations */
+
+/* Start Screen */
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    top: -500px;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    left: 200%;
+  }
+}
+
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* */
 
 @keyframes lava {
   100% {
