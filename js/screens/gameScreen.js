@@ -69,18 +69,18 @@ export class GameScreen extends BaseScreen {
   wrong() {
     this.currentErrors += 1;
 
-    this.downChain();
+    this.downChain(30);
 
     if (this.lose()) {
       this.gameOver();
     }
   }
 
-  downChain() {
+  downChain(size) {
     const chain = document.getElementById('chain');
 
     const style = window.getComputedStyle(chain);
-    chain.style.marginTop = parseInt(style.marginTop) + 30 + "px";
+    chain.style.marginTop = parseInt(style.marginTop) + size + "px";
   }
 
   lose() {
@@ -92,8 +92,11 @@ export class GameScreen extends BaseScreen {
   }
 
   gameOver() {
+    this.downChain(220);
     const gameOverScreen = new GameOverScreen({ element: 'game-over-screen', parentElement: 'game'});
-    gameOverScreen.show(1000);
+    setTimeout(() => {
+      gameOverScreen.show(1000);
+    }, 2000);
   }
 
   winScreen() {

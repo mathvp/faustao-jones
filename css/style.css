@@ -51,6 +51,8 @@ a, a:visited, a:active {
   width: 100vw;
   height: 100vh;
   margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 #hidden-screens {
@@ -61,6 +63,7 @@ a, a:visited, a:active {
   width: inherit;
   height: inherit;
   overflow: hidden;
+  position: relative;
 }
 
 #title-screen {
@@ -116,10 +119,10 @@ a, a:visited, a:active {
 
 #character-wrapper #chain {
   width: 8px;
-  height: 500px;
+  height: 550px;
   background: url(../img/sprites/chain.png) repeat-y 0 0;
   margin: 0 auto;
-  margin-top: -330px;
+  margin-top: -370px;
   transition: all .5s;
   transform-origin: top center;
   animation: shake 4s infinite alternate;
