@@ -47,10 +47,6 @@ a, a:visited, a:active {
 .btn:hover {
 }
 
-#game {
-  max-height: 100vh;
-}
-
 #game-wrapper {
   width: 100vw;
   height: 100vh;
@@ -85,30 +81,23 @@ a, a:visited, a:active {
 }
 
 #inside-game-screen {
-  background-color: #fff;
+  background: url(../img/sprites/cave-bg.png) no-repeat #100b09;
+  background-size: cover;
   overflow: hidden;
 }
 
-#inside-game-screen #bg-wrapper, #inside-game-screen #character-wrapper {
+#inside-game-screen #lava-river, #inside-game-screen #character-wrapper {
   z-index: 0;
   position: absolute;
   width: inherit;
-  height: inherit;
   overflow: hidden;
 }
 
-#inside-game-screen #bg-wrapper .bg {
-  display: block;
-  width: 100%;
+#inside-game-screen #lava-river {
+  bottom: 0;
 }
 
-#inside-game-screen #bg-wrapper #top-bg {
-  background: url(../img/sprites/bg-top.png) no-repeat bottom left;
-  background-size: cover;
-  height: 462px;
-}
-
-#inside-game-screen #bg-wrapper #lava {
+#inside-game-screen #lava-river #lava-top {
   background: url(../img/sprites/lava-sprite.png) no-repeat;
   background-position-y: 0;
   background-position-x: center;
@@ -116,8 +105,8 @@ a, a:visited, a:active {
   animation: lava .8s steps(3) infinite;
 }
 
-#inside-game-screen #bg-wrapper #bottom-bg {
-  background: url(../img/sprites/bg-bottom.png) no-repeat bottom center;
+#inside-game-screen #lava-river #lava-bottom {
+  background: url(../img/sprites/lava-bottom.png) no-repeat bottom center;
   height: 156px;
 }
 
