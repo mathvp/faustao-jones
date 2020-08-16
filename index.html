@@ -56,6 +56,7 @@
     import { TitleScreen } from './js/screens/titleScreen.js';
     import { GameScreen } from './js/screens/gameScreen.js';
     import { LetterBoard } from './js/screens/letterBoard.js';
+    import { playAudio } from './js/utils/playAudio.js';
 
     const gameConfig = {
       id: 'game',
@@ -86,13 +87,18 @@
       wordElement.innerHTML = gameScreen.wordObj.word;
 
       window.letterBoard = new LetterBoard({ element: 'letters-board' })
+
+      playAudio('./audio/falas/start-', 1, 7);
     }
 
     document.getElementById('restart-button').addEventListener('click', restartClicked);
     document.getElementById('won-button').addEventListener('click', restartClicked);
 
     function restartClicked() {
-      window.location.reload();
+      playAudio('./audio/falas/back-', 1, 3).then(function() {
+        window.location.reload();
+      });
+      
     }
   </script>
 </body>

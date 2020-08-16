@@ -2,6 +2,7 @@ import { BaseScreen } from './baseScreen.js';
 import words from '../../data/words.js';
 import { GameOverScreen } from './gameOverScreen.js';
 import { WinScreen } from './winScreen.js';
+import { playAudio } from '../utils/playAudio.js';
 
 export class GameScreen extends BaseScreen {
   constructor(options) {
@@ -15,7 +16,7 @@ export class GameScreen extends BaseScreen {
 
   setupGame() {
     this.wordObj = this.getRandomWordObj();
-    this.maxErrors = Math.ceil(this.wordObj.length / 2);
+    this.maxErrors = this.wordObj.length;
 
     for(let i = 0; i < this.wordObj.length; i++) {
       this.guessWord.push('_ ');
@@ -58,7 +59,12 @@ export class GameScreen extends BaseScreen {
       this.hits += 1;
 
       if (this.win()) {
+        playAudio('../../audio/falas/ganhou-', 1, 4);
         this.winScreen();
+      } else {
+        if(hits == 0) {
+          playAudio('../../audio/falas/acerto-', 1, 6);
+        } 
       }
 
     } else if (hits == 0){
@@ -72,7 +78,11 @@ export class GameScreen extends BaseScreen {
     this.downChain(30);
 
     if (this.lose()) {
+      playAudio('../../audio/falas/som-caindo-', 1, 1);
+      playAudio('../../audio/falas/perdeu-', 1, 9);    
       this.gameOver();
+    } else {
+      playAudio('../../audio/falas/erro-', 1, 7);
     }
   }
 
