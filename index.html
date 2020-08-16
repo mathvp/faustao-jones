@@ -45,11 +45,13 @@
       <img src="./img/game-over-screen.png" alt="" id="game-over-bg">
       <img src="./img/game-over-screen-text.png" alt="Perdeu" id="game-over-text">
       <a href="javascript:void(0)" id="restart-button"><img src="./img/btn-back.png" alt="Voltar"></a>
+      <div id="lose-time" class="time"></div>
     </div>
 
     <div id="win-screen" class="screen">
       <img src="./img/win-screen-text.png" id="win-text" alt="Ganhou!">
       <a href="javascript:void(0)" id="won-button"><img src="./img/btn-back-2.png" alt="Voltar"></a>
+      <div id="win-time" class="time"></div>
     </div>
   </div>
 
@@ -57,7 +59,7 @@
     import { TitleScreen } from './js/screens/titleScreen.js';
     import { GameScreen } from './js/screens/gameScreen.js';
     import { LetterBoard } from './js/screens/letterBoard.js';
-    import { playAudio } from './js/utils/playAudio.js';
+    import { playAudio } from './js/utils/functions.js';
 
     const gameConfig = {
       id: 'game',

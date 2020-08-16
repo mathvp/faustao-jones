@@ -214,6 +214,15 @@ a, a:visited, a:active {
 #win-screen #win-text {
   margin-top: 6%;
 }
+
+.time {
+  position: absolute;
+  bottom: 5%;
+  color: #fff;
+  width: inherit;
+  text-align: center;
+  font-size: 14px;
+}
 /* Animations */
 
 /* Start Screen */

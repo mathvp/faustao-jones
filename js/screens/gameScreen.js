@@ -2,7 +2,7 @@ import { BaseScreen } from './baseScreen.js';
 import words from '../../data/words.js';
 import { GameOverScreen } from './gameOverScreen.js';
 import { WinScreen } from './winScreen.js';
-import { playAudio } from '../utils/playAudio.js';
+import { playAudio } from '../utils/functions.js';
 
 export class GameScreen extends BaseScreen {
   constructor(options) {

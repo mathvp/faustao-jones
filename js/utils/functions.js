@@ -12,4 +12,8 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export { playAudio, randomNumber };
+function getCurrentTime() {
+  return new Date().toLocaleTimeString();
+}
+
+export { playAudio, randomNumber, getCurrentTime };
