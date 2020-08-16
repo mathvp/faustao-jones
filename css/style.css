@@ -72,7 +72,7 @@ a, a:visited, a:active {
   color: #fff;
 }
 
-#title-screen #game-logo {
+#title-screen #game-logo, #game-over-text {
   position: absolute;
   top: 48%;
   left: 50%;
@@ -90,7 +90,7 @@ a, a:visited, a:active {
   transition: all .5s;
   animation: slideRight .5s ease;  
 }
-#title-screen #start-button {
+#title-screen #start-button, #restart-button {
   position: absolute;
   top: 80%;
   left: 50%;
@@ -192,6 +192,19 @@ a, a:visited, a:active {
   opacity: .3;
 }
 
+#game-over-screen {
+
+}
+
+#game-over-bg {
+  position: absolute;
+  z-index: 0;
+  width: inherit;
+  height: inherit;
+  animation-delay: 2.5s;
+  animation: blackWhite 10s forwards;
+}
+
 /* Animations */
 
 /* Start Screen */
@@ -246,5 +259,13 @@ a, a:visited, a:active {
   100% {
     margin-left: -18px;
     transform: rotate(1deg)
+  }
+}
+
+/* */
+
+@keyframes blackWhite {
+  100% {
+    filter: grayscale(100%) blur(1px) brightness(40%);
   }
 }
