@@ -90,7 +90,7 @@ a, a:visited, a:active {
   transition: all .5s;
   animation: slideRight .5s ease;  
 }
-#title-screen #start-button, #restart-button {
+#title-screen #start-button, #restart-button, #won-button {
   position: absolute;
   top: 80%;
   left: 50%;
@@ -205,6 +205,15 @@ a, a:visited, a:active {
   animation: blackWhite 10s forwards;
 }
 
+#win-screen {
+  width: inherit;
+  height: inherit;
+  background: url(../img/win-screen-bg.png) no-repeat 0 0;
+  background-size: cover;
+}
+#win-screen #win-text {
+  margin-top: 6%;
+}
 /* Animations */
 
 /* Start Screen */
