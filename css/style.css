@@ -49,10 +49,20 @@ a, a:visited, a:active {
 
 #game-wrapper {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 2rem 0;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#credits {
+  max-width: 350px;
+  text-align: center;
+  line-height: 14px;
+  padding: 10px 0;
+  font-size: 12px;
 }
 
 #hidden-screens {
@@ -285,5 +295,11 @@ a, a:visited, a:active {
 @keyframes blackWhite {
   100% {
     filter: grayscale(100%) blur(1px) brightness(40%);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #game-wrapper {
+    margin: 5px 0;
   }
 }
