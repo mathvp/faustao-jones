@@ -12,14 +12,29 @@ export class GameScreen extends BaseScreen {
     this.currentErrors = 0;
     this.maxErrors = null;
     this.hits = 0;
+    this.whiteSpaces = 0;
   }
 
   setupGame() {
     this.wordObj = this.getRandomWordObj();
-    this.maxErrors = this.wordObj.length;
+
+    this.maxErrors = this.setMaxErrors();
 
     for(let i = 0; i < this.wordObj.length; i++) {
-      this.guessWord.push('_ ');
+      if(this.wordObj.word[i].replace(/\s/g,'') == '') {
+        this.guessWord.push(' ');
+        this.whiteSpaces += 1;
+      } else {
+        this.guessWord.push('_');        
+      }
+    }
+  }
+
+  setMaxErrors() {
+    if (this.wordObj.length >= 10) {
+      return Math.ceil(this.wordObj.length / 2);
+    } else {
+      return Math.ceil(this.wordObj.length / 2) + 2;
     }
   }
 
@@ -35,6 +50,8 @@ export class GameScreen extends BaseScreen {
     this.show(1000);
 
     this.printGuessWord();
+    this.printAttempts();
+    this.setInitialPosition();
 
     document.addEventListener('letterClick', (event) => {
       if (!this.lose()) {
@@ -46,6 +63,11 @@ export class GameScreen extends BaseScreen {
   printGuessWord() {
     const container = document.getElementById('guess-container');
     container.innerHTML = this.guessWord.join('');
+  }
+
+  printAttempts() {
+    const container = document.getElementById('attempts');
+    container.innerHTML = `Erros: ${this.currentErrors}/${this.maxErrors}`;
   }
 
   compareLetterWord(letter, start, hits) {
@@ -70,6 +92,7 @@ export class GameScreen extends BaseScreen {
     } else if (hits == 0){
       this.wrong();
     }
+    this.printAttempts();
   }
 
   wrong() {
@@ -98,7 +121,7 @@ export class GameScreen extends BaseScreen {
   }
 
   win() {
-    return (this.hits == this.wordObj.length);
+    return (this.hits == (this.wordObj.length - this.whiteSpaces));
   }
 
   gameOver() {
@@ -120,4 +143,9 @@ export class GameScreen extends BaseScreen {
     }, 1500);
   }
 
+  setInitialPosition() {
+    for (let i = 0; i < this.maxErrors; i++) {
+      this.downChain(-30);
+    }
+  }
 }

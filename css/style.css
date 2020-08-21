@@ -100,6 +100,17 @@ a, a:visited, a:active {
   transition: all .5s;
   animation: slideRight .5s ease;  
 }
+
+button:focus {
+  outline:0;
+}
+
+#title-screen #start-button{
+  width: 281px;
+  height: 72px;
+  background: url(../img/start-button.gif) no-repeat 0 0;
+}
+
 #title-screen #start-button, #restart-button, #won-button {
   position: absolute;
   top: 80%;
@@ -107,6 +118,12 @@ a, a:visited, a:active {
   transform: translate(-50%, -50%);
   display: block;
   text-align: center;
+  cursor: pointer;
+  border: 0;
+}
+
+.btn:focus {
+  animation: bounceButton 1s ease;
 }
 
 #title-screen #start-button img {
@@ -153,7 +170,7 @@ a, a:visited, a:active {
   height: 550px;
   background: url(../img/sprites/chain.png) repeat-y 0 0;
   margin: 0 auto;
-  margin-top: -370px;
+  margin-top: -240px;
   transition: all .5s;
   transform-origin: top center;
   animation: shake 4s infinite alternate;
@@ -171,6 +188,10 @@ a, a:visited, a:active {
   color: #fff;
 }
 
+#attempts {
+  padding: 5px 0 0 10px;
+}
+
 #guess-container {
   font-size: 20px;
   width: 100%;
@@ -178,6 +199,7 @@ a, a:visited, a:active {
   margin-top: 10%;
   background-color: rgba(237, 28, 36, .4);
   padding: 5px 0;
+  letter-spacing: 5px;
 }
 
 #letters-board {
@@ -200,6 +222,7 @@ a, a:visited, a:active {
 
 #letters-board .letter.clicked {
   opacity: .3;
+  animation: bounceLetter .5s ease;
 }
 
 #game-over-screen {
@@ -262,6 +285,58 @@ a, a:visited, a:active {
   }
 }
 
+@keyframes bounceButton {
+  0% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) scale(1);    
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) scale(1);    
+  }
+
+  95% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);    
+  }
+}
+
+@keyframes bounceLetter {
+  0% {
+    transform: scale(1.2);
+  }
+
+  25% {
+    transform: scale(1);    
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  75% {
+    transform: scale(1);    
+  }
+
+  95% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);    
+  }
+}
+
 /* */
 
 @keyframes lava {
@@ -297,6 +372,8 @@ a, a:visited, a:active {
     filter: grayscale(100%) blur(1px) brightness(40%);
   }
 }
+
+/* */
 
 @media only screen and (max-width: 600px) {
   #game-wrapper {

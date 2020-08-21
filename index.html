@@ -22,7 +22,10 @@
     <div id="title-screen" class="screen flex-col flex-center">
       <img src="./img/title-screen-logo.png" alt="Faustão Jones" id="game-logo">
       <img src="./img/title-screen-subtitle.png" alt="E as palavras perdidas" id="game-subtitle">
-      <a href="javascript:void(0)" class="btn btn-primary" id="start-button"><img src="./img/start-button.gif" alt="Iniciar"></a>
+      <button id="start-button" class="btn"></button>
+      <audio id="opening-music">
+        <source src="./audio/opening.mp3" type="audio/mpeg">
+      </audio>
     </div>
 
     <div id="inside-game-screen" class="screen">
@@ -36,8 +39,8 @@
         <div id="lava-bottom">
         </div>
       </div>
+      <div class="game-hud" id="attempts"></div>
       <div class="game-hud" id="guess-container"></div>
-      <div id="gameword"></div>
       <div class="game-hud" id="letters-board">
       </div>
     </div>
@@ -45,22 +48,23 @@
     <div id="game-over-screen" class="screen">
       <img src="./img/game-over-screen.png" alt="" id="game-over-bg">
       <img src="./img/game-over-screen-text.png" alt="Perdeu" id="game-over-text">
-      <a href="javascript:void(0)" id="restart-button"><img src="./img/btn-back.png" alt="Voltar"></a>
+      <a href="/?r=1" id="restart-button" class="btn"><img src="./img/btn-back-2.png" alt="Voltar"></a>
       <div id="lose-time" class="time"></div>
     </div>
 
     <div id="win-screen" class="screen">
       <img src="./img/win-screen-text.png" id="win-text" alt="Ganhou!">
-      <a href="javascript:void(0)" id="won-button"><img src="./img/btn-back-2.png" alt="Voltar"></a>
+      <a href="/?r=1" id="won-button" class="btn"><img src="./img/btn-back-2.png" alt="Voltar"></a>
       <div id="win-time" class="time"></div>
     </div>
   </div>
 
   <script type="module">
+    import './js/main.js';
     import { TitleScreen } from './js/screens/titleScreen.js';
     import { GameScreen } from './js/screens/gameScreen.js';
     import { LetterBoard } from './js/screens/letterBoard.js';
-    import { playAudio } from './js/utils/functions.js';
+    import { playAudio, reset } from './js/utils/functions.js';
 
     const gameConfig = {
       id: 'game',
@@ -69,7 +73,6 @@
     };
 
     const gameInit = new Main(gameConfig);
-
     function start() {
       const titleOptions = {
         element: 'title-screen',
@@ -87,20 +90,21 @@
       window.gameScreen = new GameScreen({ element: 'inside-game-screen', parentElement: 'game'});
       gameScreen.startGame();
 
-      const wordElement = document.getElementById('gameword');
-      wordElement.innerHTML = gameScreen.wordObj.word;
-
       window.letterBoard = new LetterBoard({ element: 'letters-board' })
 
-      playAudio('./audio/falas/start-', 1, 7);
+      const currentMusic = document.getElementById('opening-music');
+      currentMusic.pause();
+      currentMusic.currentTime = 0;
+      playAudio('../audio/falas/start-', 1, 7);
     }
 
     document.getElementById('restart-button').addEventListener('click', restartClicked);
     document.getElementById('won-button').addEventListener('click', restartClicked);
 
-    function restartClicked() {
-      playAudio('./audio/falas/back-', 1, 3).then(function() {
-        window.location.reload();
+    function restartClicked(event) {
+      event.preventDefault();
+      playAudio('../audio/falas/back-', 1, 3).then(function() {
+        reset();
       });
       
     }

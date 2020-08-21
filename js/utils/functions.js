@@ -16,4 +16,8 @@ function getCurrentTime() {
   return new Date().toLocaleTimeString();
 }
 
-export { playAudio, randomNumber, getCurrentTime };
+function reset() {
+  window.location.href = `${location.protocol}//${location.host}${location.pathname}?r=1`
+}
+
+export { playAudio, randomNumber, getCurrentTime, reset };
